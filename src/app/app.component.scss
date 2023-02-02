@@ -1,0 +1,71 @@
+.mark1{
+    background-color: #8cd98c;
+    color: #000099;
+    border: 2px solid #8cd98c;
+    border-radius: 2px;
+}
+
+.mark2{
+    background-color: #f28cf2;
+    color: #262626;
+    border: 2px solid #f28cf2;
+    border-radius: 2px;
+}
+
+.mark3{
+    background-color: #ffff80;
+    color: #0000ff;
+    border: 2px solid #ffff80;
+    border-radius: 2px;
+}
+
+.mark4{
+    background-color: #d68442;
+    color: #000022;
+    border: 2px solid #d68442;
+    border-radius: 2px;
+}
+
+.mark0{
+    background-color: #938ce8;
+    color: #020207;
+    border: 2px solid #938ce8;
+    border-radius: 2px;
+}
+
+mark, span{
+    margin: 0.25em;
+}
+
+.tag-container{
+    display: flex;
+
+    div{
+        margin: 0.5em;
+    }
+}
+
+button{
+    margin: 0.2em;
+    padding: 0.5em;
+}
+
+.container{
+    display: flex; 
+    flex-wrap: wrap;
+    margin: 1em 0;
+    align-items: center;
+}
+
+.main-container{
+    display: flex;
+    margin: 2rem;
+}
+
+.analysis-container{
+    flex-basis: 70%;
+}
+
+.result-container{
+    flex-basis: 30%;
+}

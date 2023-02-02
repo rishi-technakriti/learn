@@ -1,0 +1,68 @@
+<div class="main-container">
+  <div class="analysis-container" *ngIf="isAnalyse ; else analyse">
+    <div>
+      <label>Enter the paragraph:</label>
+    </div>
+    <div>
+      <textarea cols="100" rows="20" name="text" [(ngModel)]="text"></textarea>
+    </div>
+    <div>
+      <button (click)="onAnalyse()">Analyse</button>
+    </div>    
+  </div>
+  <ng-template #analyse>
+    <div class="analysis-container">
+      <div class="tag-container">
+        <div>
+          <button (click)="openTagModal()">Add Tag</button>
+        </div>
+        <div>
+          <ng-template ngFor let-tag [ngForOf]="tags">
+            <button 
+              (click)="toggleTag(tag)" 
+              [ngClass]="tag.name == selectedTag?.name ? tag.className : ''"
+            >{{tag.name}}</button>
+          </ng-template>
+        </div>
+      </div>
+      <div class="container">
+        <ng-template ngFor let-txt [ngForOf]="showText">
+          <mark
+            *ngIf="txt.type == 'mark'"
+            [id]="txt.id"
+            [class]="txt.tag.className"
+          >
+            <ng-template ngFor let-txtinner [ngForOf]="txt.spans">
+              <span 
+                *ngIf="txtinner.type == 'span'"
+                (mousedown)="down(txtinner.id, $event)" 
+                (mouseup)="up(txtinner.id)"
+                (mousemove)="move($event)"
+                [id]="txtinner.id"
+              >{{txtinner.value}}</span>
+              <button *ngIf="txtinner.type == 'button'" (click)="deleteMark(txt.id)">{{txt.tag.name}} x</button>
+            </ng-template>
+          </mark>
+          <span
+            *ngIf="txt.type == 'span'" 
+            (mousedown)="down(txt.id, $event)" 
+            (mouseup)="up(txt.id)"
+            (mousemove)="move($event)"
+            [id]="txt.id"
+          >{{txt.value}}</span>
+        </ng-template>
+      </div>
+      <div class="footer">
+        <button (click)="onReset()">Reset</button>
+        <button (click)="save()">Save</button>
+      </div>
+    </div>
+  </ng-template>
+  
+  <div class="result-container">
+    <h3>Result</h3>
+    <p>
+      {{result}}
+    </p>
+  </div>
+</div>
